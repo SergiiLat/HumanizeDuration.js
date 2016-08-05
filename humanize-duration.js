@@ -174,6 +174,16 @@
       second: function(c) { return ["секунд", "секунда", "секунды"][getRussianForm(c)]; },
       millisecond: function(c) { return ["миллисекунд", "миллисекунда", "миллисекунды"][getRussianForm(c)]; }
     },
+    uk: {
+      year: function (c) {return ['років', 'рік', 'роки'][getUkraineForm(c)]},
+      month: function (c) {return ['місяців', 'місяць', 'місяці'][getUkraineForm(c)]      },
+      week: function (c) {return ['нед.', 'нед.', 'нед.'][getUkraineForm(c)]      },
+      day: function (c) {return ['дн.', 'дн.', 'дн.'][getUkraineForm(c)]      },
+      hour: function (c) {return ['год.', 'год.', 'год.'][getUkraineForm(c)]      },
+      minute: function (c) {return ['хв.', 'хв.', 'хв.'][getUkraineForm(c)]      },
+      second: function (c) {return ['сек.', 'сек.', 'сек.'][getUkraineForm(c)]      },
+      millisecond: function (c) {return ['мілісекунд', 'мілісекунда', 'мілісекунди'][getUkraineForm(c)]}
+    },
     sv: {
       year: "år",
       month: function(c) { return "månad" + ((c !== 1) ? "er" : ""); },
@@ -342,6 +352,20 @@
 
   // Internal helper function for Russian language.
   function getRussianForm(c) {
+    if (Math.floor(c) !== c) {
+      return 2;
+    } else if (c === 0 || (c >= 5 && c <= 20) || (c % 10 >= 5 && c % 10 <= 9) || (c % 10 === 0)) {
+      return 0;
+    } else if (c === 1 || c % 10 === 1) {
+      return 1;
+    } else if (c > 1) {
+      return 2;
+    } else {
+      return 0;
+    }
+  }
+
+  function getUkraineForm(c) {
     if (Math.floor(c) !== c) {
       return 2;
     } else if (c === 0 || (c >= 5 && c <= 20) || (c % 10 >= 5 && c % 10 <= 9) || (c % 10 === 0)) {
